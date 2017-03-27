@@ -168,15 +168,34 @@
 					<relocation>
 					  <pattern>io.netty</pattern>
 					  <shadedPattern>shaded.netty</shadedPattern>
+					  <excludes>
+      				<exclude>io.netty.handler.ssl.NettySslPackageAccessor</exclude>
+    				</excludes>
 					</relocation>
 				  </relocations>
 				</configuration>
 				<executions>
+
+
 				  <execution>
 					<phase>package</phase>
 					<goals>
 					  <goal>shade</goal>
 					</goals>
+
+
+					            <configuration>
+              <artifactSet>
+               <includes>
+      				<include>io.netty.handler.ssl.NettySslPackageAccessor</include>
+    				</includes>
+				  <excludes>
+				    <exclude>org.slf4j:*</exclude>
+				    <exclude>io.netty:*</exclude>
+				  </excludes>
+              </artifactSet>
+            </configuration>
+
 				  </execution>
 				</executions>
 			</plugin>
